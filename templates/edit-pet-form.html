@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Edit Pet
+{% endblock %}
+
+{% block content %}
+<h1>{{ curr_pet.name }}</h1>
+{% if curr_pet.image_url %}
+    <img class="pet-image" src="{{ curr_pet.image_url }}">
+{% endif %}
+<div>Species: {{ curr_pet.species }}</div>
+{% if curr_pet.age %}
+    <div>Age: {{ curr_pet.age }}</div>
+{% endif %}
+
+<h2>Edit {{ curr_pet.name}}'s Info</h2>
+<form id="edit-pet-form" method="POST">
+    {{ form.hidden_tag() }}
+    <p class="hidden-input">
+        {{ form.name }}
+
+        {% for err in form.image_url.errors %}
+            {{ err }}
+        {% endfor %}
+    </p>
+    <p class="hidden-input">
+        {{ form.species }}
+
+        {% for err in form.image_url.errors %}
+            {{ err }}
+        {% endfor %}
+    </p>
+    <p class="hidden-input">
+        {{ form.age }}
+
+        {% for err in form.image_url.errors %}
+            {{ err }}
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.image_url.label }}
+        {{ form.image_url }}
+
+        {% for err in form.image_url.errors %}
+            {{ err }}
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.notes.label }}
+        {{ form.notes }}
+
+        {% for err in form.notes.errors %}
+            {{ err }}
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.available.label }}
+        {{ form.available }}
+
+        {% for err in form.available.errors %}
+            {{ err }}
+        {% endfor %}
+    </p>
+    <a class="button" href="/">Back to All Pets</a><button class="button" type="submit">Edit {{ curr_pet.name }}</button>
+</form>
+{% endblock %}
